@@ -17,8 +17,8 @@ app.get("/", homepageController.start);
 //Case 2: user search for a movie
 app.post("/", homepageController.update);
 
-
-app.listen(3000, () => {
-    console.log("Our server is running on http://localhost:3000/ 🚀");
+const port = process.env.PORT||3000;
+app.listen(port, () => {
+    console.log(`Starting Server at ${port}`);
 });
 
