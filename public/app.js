@@ -15,7 +15,7 @@ function initMovieNominations(movieNominations) {
     `;
 
     const nominationList = document.getElementById("nominations");
-    if (movieNominations){
+    if (movieNominations) {
         for (let nominatedMovie of movieNominations) {
             nominationList.innerHTML += `
                 
@@ -27,23 +27,25 @@ function initMovieNominations(movieNominations) {
                 </li>
 
             `;
-    
+
         }
 
     }
-    
+
 }
 
-function disableNominated(){
+function disableNominated() {
     const nominationButtons = document.querySelectorAll(".btn-info");
     let movieNominations = JSON.parse(myStorage.getItem('nominations'));
-    for (let btn of nominationButtons){
-        if (movieNominations.includes(btn.id)){
-            btn.disabled=true;
-        }
+    if (movieNominations) {
+        for (let btn of nominationButtons) {
+            if (movieNominations.includes(btn.id)) {
+                btn.disabled = true;
+            }
 
+        }
     }
-    
+
 }
 
 // call functions at initialization
@@ -63,7 +65,7 @@ init();
 nominationButtons.forEach(el => el.addEventListener('click', event => {
 
     let movieNominations = JSON.parse(myStorage.getItem('nominations'));
-    
+
 
     // let movieNominations = JSON.parse(myStorage.getItem("nominations"));
     if (movieNominations === null) {
@@ -72,12 +74,12 @@ nominationButtons.forEach(el => el.addEventListener('click', event => {
 
     // display a banner when there are 5 nominations
     // movieNominations.length>4
-    if (movieNominations.length>4){
+    if (movieNominations.length > 4) {
         alert("The max number of nominations is 5.");
 
-    }else{
+    } else {
         const nominationList = document.getElementById("nominations");
-       
+
 
         nominationList.innerHTML +=
             `
@@ -97,10 +99,10 @@ nominationButtons.forEach(el => el.addEventListener('click', event => {
         //reload the page
         location.reload();
 
-        
+
     }
 
-    
+
 
 }));
 
@@ -108,18 +110,18 @@ const removeButtons = document.querySelectorAll(".btn-danger");
 
 // remove buttons
 removeButtons.forEach(el => el.addEventListener('click', event => {
-    let nominatationToRemove=event.target.id.split("_")[1];
+    let nominatationToRemove = event.target.id.split("_")[1];
     let movieNominations = JSON.parse(myStorage.getItem('nominations'));
     //remove it from local storage
 
-    let newNominationList=[];
-    for (let nominatedMovie of movieNominations){
-        if (nominatedMovie!==nominatationToRemove){
+    let newNominationList = [];
+    for (let nominatedMovie of movieNominations) {
+        if (nominatedMovie !== nominatationToRemove) {
             newNominationList.push(nominatedMovie);
         }
     }
     myStorage.setItem("nominations", JSON.stringify(newNominationList));
-    newNominationList=[];
+    newNominationList = [];
 
     //remove the child list on the page
 
@@ -129,5 +131,5 @@ removeButtons.forEach(el => el.addEventListener('click', event => {
     //reload the page
     location.reload();
 
-    
+
 }));
