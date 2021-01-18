@@ -1,0 +1,22 @@
+body {
+  background-color: whitesmoke;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+.flex {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  height: 90vh;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
